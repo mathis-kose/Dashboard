@@ -18,50 +18,50 @@ Dieses Dokument dient als detaillierte und umsetzbare Roadmap für die Entwicklu
 
 ## Gesamtfortschritt
 - **Phasen abgeschlossen:** 0 / 7
-- **Aufgaben erledigt:** 0 / 186
+- **Aufgaben erledigt:** 26 / 194
 
 ---
 
-## Phase 1: Grundlegende Infrastruktur (Status: 0/28 Aufgaben)
+## Phase 1: Grundlegende Infrastruktur (Status: 26/32 Aufgaben)
 
 ### [P1] Projekt-Setup und Grundstruktur
-- [ ] Vite-Projekt initialisieren (React + TypeScript).
-- [ ] TypeScript `tsconfig.json` mit strikten Einstellungen (`strict: true`) konfigurieren.
-- [ ] Tailwind CSS installieren und konfigurieren (`tailwind.config.js`, `postcss.config.js`).
-- [ ] Verzeichnisstruktur anlegen: `src/{components,hooks,types,utils,styles,contexts}`.
-- [ ] Grundlegende TypeScript-Interfaces in `src/types` definieren: `Tile`, `GridPosition`, `AppState`.
-- [ ] Einfache `App`-Komponente mit "Hello World" implementieren.
-- [ ] Jest und React Testing Library installieren und konfigurieren (`jest.config.js`, `setupTests.ts`).
-- [ ] [T] Ersten Unit-Test für die `App`-Komponente erstellen und die Testumgebung validieren.
+- [x] Vite-Projekt initialisieren (React + TypeScript).
+- [x] TypeScript `tsconfig.json` mit strikten Einstellungen (`strict: true`) konfigurieren.
+- [x] Tailwind CSS installieren und konfigurieren (`tailwind.config.js`, `postcss.config.js`).
+- [x] Verzeichnisstruktur anlegen: `src/{components,hooks,types,utils,styles,contexts}`.
+- [x] Grundlegende TypeScript-Interfaces in `src/types` definieren: `Tile`, `GridPosition`, `AppState`.
+- [x] Einfache `App`-Komponente mit "Hello World" implementieren. (Ist jetzt "Tagesbegleiter - Neumorphic Demo")
+- [x] Jest und React Testing Library installieren und konfigurieren (`jest.config.js`, `setupTests.ts`).
+- [x] [T] Ersten Unit-Test für die `App`-Komponente erstellen und die Testumgebung validieren.
 
 ### [P2] Neumorphismus Design-System
-- [ ] CSS-Variablen für Farbpalette (Light/Dark Mode), Schatten, Radien und Abstände in `src/styles/theme.css` definieren.
-- [ ] Komponente `NeumorphicCard` in `src/components/ui` erstellen.
-- [ ] Komponente `NeumorphicButton` mit Hover-, Active- und "Pressed"-Effekten erstellen.
-- [ ] Komponente `NeumorphicInput` erstellen.
-- [ ] Eine Storybook-ähnliche Demoseite erstellen, die alle Neumorphismus-Komponenten darstellt.
-- [ ] [T] Komponenten-Tests für `NeumorphicCard` schreiben.
-- [ ] [T] Komponenten-Tests für `NeumorphicButton` (inkl. Interaktions-States) schreiben.
-- [ ] [T] Komponenten-Tests für `NeumorphicInput` schreiben.
+- [x] CSS-Variablen für Farbpalette (Light/Dark Mode), Schatten, Radien und Abstände in `src/styles/theme.css` definieren.
+- [x] Komponente `NeumorphicCard` in `src/components/ui` erstellen.
+- [x] Komponente `NeumorphicButton` mit Hover-, Active- und "Pressed"-Effekten erstellen.
+- [x] Komponente `NeumorphicInput` erstellen.
+- [x] Eine Storybook-ähnliche Demoseite erstellen, die alle Neumorphismus-Komponenten darstellt. (Hinweis: `App.tsx` dient aktuell diesem Zweck)
+- [x] [T] Komponenten-Tests für `NeumorphicCard` schreiben.
+- [x] [T] Komponenten-Tests für `NeumorphicButton` (inkl. Interaktions-States) schreiben.
+- [x] [T] Komponenten-Tests für `NeumorphicInput` schreiben.
 
 ### [P3] Grid-System und Layout-Grundlagen
-- [ ] `GridContainer`-Komponente implementieren (CSS Grid).
-- [ ] `GridCell`-Komponente für einzelne Zellen erstellen.
-- [ ] Kachel-Größen als Enum oder Konstanten definieren (z.B. `TILE_SIZE.W1H1`, `TILE_SIZE.W2H1`).
-- [ ] Logik für responsive Grid-Dimensionen basierend auf dem Viewport implementieren.
-- [ ] Utility-Funktion `checkCollision` für Kachel-Überlappung erstellen.
-- [ ] Utility-Funktion `findAvailableSpot` für die Platzierung neuer Kacheln erstellen.
-- [ ] `GridContext` zur Verwaltung des Grid-Zustands einrichten.
-- [ ] Visuelle Gitter-Linien als zuschaltbare Debug-Option implementieren.
-- [ ] [T] Unit-Tests für `checkCollision`-Logik schreiben.
-- [ ] [T] Unit-Tests für `findAvailableSpot`-Logik schreiben.
+- [x] `GridContainer`-Komponente implementieren (CSS Grid).
+- [x] `GridCell`-Komponente für einzelne Zellen erstellen.
+- [x] Kachel-Größen als Enum oder Konstanten definieren (z.B. `TILE_SIZE.W1H1`, `TILE_SIZE.W2H1`). (Implementiert als `TILE_SIZE_UNITS` Objekt)
+- [x] Logik für responsive Grid-Dimensionen basierend auf dem Viewport implementieren.
+- [x] Utility-Funktion `checkCollision` für Kachel-Überlappung erstellen.
+- [x] Utility-Funktion `findAvailableSpot` für die Platzierung neuer Kacheln erstellen.
+- [x] `GridContext` zur Verwaltung des Grid-Zustands einrichten.
+- [x] Visuelle Gitter-Linien als zuschaltbare Debug-Option implementieren.
+- [x] [T] Unit-Tests für `checkCollision`-Logik schreiben.
+- [x] [T] Unit-Tests für `findAvailableSpot`-Logik schreiben.
 
 ### [P4] Basis-Kachel-System
-- [ ] `Tile` Enum mit allen Kachel-Typen definieren.
+- [ ] `Tile` Enum mit allen Kachel-Typen definieren. (Aktuell `string` in `Tile` Interface, Kommentar `// Later an enum` vorhanden)
 - [ ] `TileWrapper`-Komponente erstellen, die jede Kachel umschließt und gemeinsame Funktionen (z.B. Header) bereitstellt.
 - [ ] `TileRegistry` implementieren, um Kachel-Metadaten (Größe, Komponente) zu verwalten.
 - [ ] Factory Pattern für die dynamische Erstellung von Kachel-Komponenten basierend auf ihrem Typ implementieren.
-- [ ] `TileContext` zur Verwaltung der platzierten Kacheln (ID, Typ, Position, Größe, Konfiguration) einrichten.
+- [ ] `TileContext` zur Verwaltung der platzierten Kacheln (ID, Typ, Position, Größe, Konfiguration) einrichten. (Hinweis: Teilweise durch `GridContext` für ID, Position, Größe abgedeckt; Typ und Konfiguration fehlen in `GridContext`'s `PlacedTile`)
 - [ ] [T] Tests für die `TileRegistry` und das Factory Pattern erstellen.
 
 ---
@@ -95,7 +95,7 @@ Dieses Dokument dient als detaillierte und umsetzbare Roadmap für die Entwicklu
 
 ---
 
-## Phase 3: Grundlegende Kacheln (Status: 0/22 Aufgaben)
+## Phase 3: Grundlegende Kacheln (Status: 0/26 Aufgaben)
 
 ### [P7] Uhr-Kachel mit Farbverlauf
 - [ ] `ClockTile`-Komponente (1x1) erstellen.
@@ -131,7 +131,7 @@ Dieses Dokument dient als detaillierte und umsetzbare Roadmap für die Entwicklu
 
 ---
 
-## Phase 4: Erweiterte Funktionalitäten (Status: 0/41 Aufgaben)
+## Phase 4: Erweiterte Funktionalitäten (Status: 0/43 Aufgaben)
 
 ### [P10] Erweiterte Tagesleiste mit Terminen
 - [ ] Datenmodell der Tagesleiste um Termine und Pausen erweitern.
@@ -188,7 +188,7 @@ Dieses Dokument dient als detaillierte und umsetzbare Roadmap für die Entwicklu
 
 ---
 
-## Phase 5: Backend-Integration (Status: 0/28 Aufgaben)
+## Phase 5: Backend-Integration (Status: 0/31 Aufgaben)
 
 ### [P15] Firebase Authentication Integration
 - [ ] Firebase-Projekt erstellen und SDK in die App integrieren.
@@ -231,7 +231,7 @@ Dieses Dokument dient als detaillierte und umsetzbare Roadmap für die Entwicklu
 
 ---
 
-## Phase 6: Optimierung und Polishing (Status: 0/27 Aufgaben)
+## Phase 6: Optimierung und Polishing (Status: 0/21 Aufgaben)
 
 ### [P19] Responsive Design und Mobile Optimierung
 - [ ] Tailwind CSS Breakpoints (mobile, tablet, desktop) definieren und anwenden.
@@ -262,7 +262,7 @@ Dieses Dokument dient als detaillierte und umsetzbare Roadmap für die Entwicklu
 
 ---
 
-## Phase 7: Finalisierung (Status: 0/19 Aufgaben)
+## Phase 7: Finalisierung (Status: 0/20 Aufgaben)
 
 ### [P22] Accessibility und Internationalisierung
 - [ ] `react-i18next` für die Internationalisierung (i18n) integrieren.
