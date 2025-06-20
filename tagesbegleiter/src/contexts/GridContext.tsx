@@ -1,10 +1,9 @@
 // src/contexts/GridContext.tsx
-import { createContext, useContext, useReducer } from 'react'; // Removed ReactNode
-import type { PlacedTile, GridPosition /*, TileSize */ } from '../types/grid'; // TileSize might not be needed directly in context state/actions yet
-// Placeholder for actual tile types/configurations from P4
-// import type { Tile } from '../types/index'; // Assuming base Tile type from P1 - commented out as Tile is not used yet
+import { createContext, useContext, useReducer, useEffect } from 'react'; // Added useEffect
+import type { PlacedTile, GridPosition } from '../types/grid';
+import { useResponsiveGrid } from '../hooks/useResponsiveGrid'; // Import the hook
 
-// Default grid columns
+// Default grid columns (can be considered a fallback or initial before responsive takes over)
 export const DEFAULT_GRID_COLUMNS = 12;
 
 interface GridState {
@@ -22,11 +21,10 @@ type GridAction =
 
 const initialState: GridState = {
   placedTiles: [],
-  showGridLines: false, // Default to false
-  gridColumns: DEFAULT_GRID_COLUMNS,
+  showGridLines: false,
+  gridColumns: DEFAULT_GRID_COLUMNS, // Initial default
 };
 
-// GridContext and gridReducer (update reducer for new actions)
 const GridContext = createContext<{
   state: GridState;
   dispatch: React.Dispatch<GridAction>;
@@ -50,21 +48,34 @@ function gridReducer(state: GridState, action: GridAction): GridState {
     case 'TOGGLE_GRID_LINES':
       return { ...state, showGridLines: !state.showGridLines };
     case 'SET_GRID_COLUMNS':
+      // Prevent dispatching if columns haven't actually changed
+      if (state.gridColumns === action.payload.columns) {
+        return state;
+      }
       return { ...state, gridColumns: action.payload.columns };
     default:
       // Check if the action is exhaustive
-      const _: never = action; // This will cause a type error if any action is not handled
+      // const _: never = action; // This will cause a type error if any action is not handled
       return state;
   }
 }
 
-// GridProvider and useGrid remain the same structure
 interface GridProviderProps {
-  children: React.ReactNode; // Changed to React.ReactNode
+  children: React.ReactNode;
 }
 
 export const GridProvider: React.FC<GridProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(gridReducer, initialState);
+  const responsiveColumns = useResponsiveGrid(); // Use the hook
+
+  // Effect to update grid columns in context when responsiveColumns changes
+  useEffect(() => {
+    // Dispatch only if the number of columns has actually changed
+    if (responsiveColumns !== state.gridColumns) {
+      dispatch({ type: 'SET_GRID_COLUMNS', payload: { columns: responsiveColumns } });
+    }
+  }, [responsiveColumns, state.gridColumns]); // Add state.gridColumns to dependencies
+
   return (
     <GridContext.Provider value={{ state, dispatch }}>
       {children}
