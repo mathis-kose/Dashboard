@@ -1,0 +1,34 @@
+/* src/styles/theme.css */
+:root {
+  /* Light Theme (Default) */
+  --color-bg-light: #e0e0e0;
+  --color-text-light: #333333;
+  --shadow-light-inset: inset 5px 5px 10px #c8c8c8, inset -5px -5px 10px #ffffff;
+  --shadow-light-outset-strong: 6px 6px 12px #c8c8c8, -6px -6px 12px #ffffff;
+  --shadow-light-outset-soft: 3px 3px 6px #c8c8c8, -3px -3px 6px #ffffff;
+  --border-radius-base: 12px;
+  --border-radius-lg: 20px;
+
+  /* Dark Theme Variables (will be applied via a class on a parent, e.g., body.dark-theme) */
+  --color-bg-dark: #2d3748; /* Example: Tailwind's gray-800 */
+  --color-text-dark: #e2e8f0; /* Example: Tailwind's gray-200 */
+  --shadow-dark-inset: inset 5px 5px 10px #232a36, inset -5px -5px 10px #37445a;
+  --shadow-dark-outset-strong: 6px 6px 12px #232a36, -6px -6px 12px #37445a;
+  --shadow-dark-outset-soft: 3px 3px 6px #232a36, -3px -3px 6px #37445a;
+}
+
+/* Basic body styling */
+body {
+  background-color: var(--color-bg-light);
+  color: var(--color-text-light);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Define how dark theme is applied, e.g., by adding a class to body or a top-level div */
+.dark-theme {
+  --color-bg-light: var(--color-bg-dark); /* Override light vars with dark ones */
+  --color-text-light: var(--color-text-dark);
+  --shadow-light-inset: var(--shadow-dark-inset);
+  --shadow-light-outset-strong: var(--shadow-dark-outset-strong);
+  --shadow-light-outset-soft: var(--shadow-dark-outset-soft);
+}
